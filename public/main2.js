@@ -2,7 +2,7 @@ import { loadComponent } from "../src/framework.js";
 import { loadPersons, getFractiesOfPerson } from '../src/modules/person.js';
 import { load as cardLoad } from '../src/components/cards/LoadCard.js';
 import { load as fractieLoad } from '../src/components/fracties/loadFracties.js';
-
+import { state } from "../src/modules/state.js";
 
 export let fracties = [
     {
@@ -80,42 +80,34 @@ export let fracties = [
 
 ]
 
-export let score = 0;
-
-export let cards = []
-
-export let random5Cards = [];
-
-export var selectedCard = null;
-
 const main = async () => {
     if (localStorage.getItem("cards")) {
-        cards = JSON.parse(localStorage.getItem("cards"));
+        state.cards = JSON.parse(localStorage.getItem("cards"));
     } else {
-        cards = await loadPersons();
+        state.cards = await loadPersons();
 
-        cards = cards.filter(card =>
-            fracties.some(fractie => fractie.name !== card.fractie)
-        );
+        // state.cards = state.cards.filter(card =>
+        //     fracties.some(fractie => fractie.name !== card.fractie)
+        // );
 
-        localStorage.setItem("cards", JSON.stringify(cards));
+        localStorage.setItem("cards", JSON.stringify(state.cards));
     }
 
-    random5Cards = getRandom5Cards();
+    state.random5Cards = getRandom5Cards();
 
     await loadComponent(
         "/src/components/cards/cards.html",
         "#cards-container"
     );
 
-    await cardLoad(random5Cards);
+    await cardLoad(state.random5Cards);
 
     await loadComponent(
         "/src/components/fracties/fracties.html", 
         "#fracties-container"
     );
 
-    await fractieLoad(fracties, score, cards, random5Cards);
+    await fractieLoad(fracties, state.score, state.cards, state.random5Cards);
 
 
 };
@@ -134,7 +126,7 @@ function hambugerMenu() {
 
 
 function getRandom5Cards() {
-    const random5Cards = cards.sort(() => 0.5 - Math.random());
+    const random5Cards = state.cards.sort(() => 0.5 - Math.random());
     return random5Cards.slice(0, 5);
 }
 
