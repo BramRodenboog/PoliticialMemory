@@ -8,8 +8,7 @@ async function selectFractie(fractie, score, cards, random5Cards) {
     let selectedCard = document.querySelector(".selected");
     
     if (selectedCard) {
-        console.log(selectedCard)
-        let cardData = state.cards.find(card => card.Id === parseInt(selectedCard.id));
+        let cardData = state.cards.find(card => card.Id === selectedCard.id);
         if (!cardData) {
             console.log("Card data not found for selected card.");
             return;
