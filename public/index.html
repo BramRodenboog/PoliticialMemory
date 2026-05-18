@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="main2.js" defer></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar" id="mynavbar">
+        <a href="#." class="active">.</a>
+        <a href="#.">.</a>
+        <a href="#.">.</a>
+
+        <a href="#.">.</a>
+        <a style="font-size:15px;" class="icon" onclick="hambugerMenu()">&#9776;</a>
+    </div>
+
+    <div id="content" style="display: flex; flex-wrap: wrap;" class="content">
+        <div style="display:flex; justify-content: space-between;">
+            <h1 id="score">Score: 0</h1>
+            <h1 id="politici">Politici: 0/150</h1>
+        </div>
+    </div>
+    <div id="cards-container"></div>
+    <div id="fracties-container"></div>
+</body>
+
+</html>

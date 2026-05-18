@@ -127,3 +127,6 @@ body {
 	margin-top: 0.5rem;
 	color: white;
 }
+.selected {
+	border: 11px solid #4adf83;
+}
