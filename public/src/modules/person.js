@@ -1,4 +1,4 @@
-
+import { state } from "./state.js";
 const loadPersons = async () => {
     const response = await fetch(
         "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/persoon?$filter=Verwijderd%20eq%20false%20and%20(Functie%20eq%20'Tweede%20Kamerlid')&$format=application/json;odata.metadata=full"
@@ -10,10 +10,10 @@ const loadPersons = async () => {
 
     const data = await response.json();
 
-    return await Promise.all(data.value.map(person => ({
+    return await Promise.all(data.value.map(async (person) => ({
         ...person,
         image: `https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/Persoon/${person.Id}/resource`,
-        fractie: getFractiesOfPerson(person[`ActiviteitActor@odata.navigationLink`])
+        fractie: await getFractiesOfPerson(person[`ActiviteitActor@odata.navigationLink`])
     })));
 }
 
@@ -33,5 +33,9 @@ const getFractiesOfPerson = async (apiCall) => {
     }
     return "";
 }
+function getRandom5Cards(stateCards) {
+    const random5 = [...stateCards].sort(() => 0.5 - Math.random());
+    return random5.slice(0, 5);
+}
 
-export { loadPersons, getFractiesOfPerson };
+export { loadPersons, getFractiesOfPerson, getRandom5Cards };

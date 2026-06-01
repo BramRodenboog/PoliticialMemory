@@ -14,6 +14,7 @@ export async function load(random5Cards) {
         div.className = "card";
         div.id = card.Id;
         div.addEventListener("click", () => {
+            state.selectedCard = { object: card, element: div };
             document.querySelectorAll(".card").forEach(c => c.classList.remove("selected"));
             div.classList.add("selected");
         });

@@ -3,7 +3,7 @@ import { loadPersons, getFractiesOfPerson } from '../src/modules/person.js';
 import { load as cardLoad } from '../src/components/cards/LoadCard.js';
 import { load as fractieLoad } from '../src/components/fracties/loadFracties.js';
 import { state } from "../src/modules/state.js";
-
+import { getRandom5Cards } from "../src/modules/person.js";
 export let fracties = [
     {
         name: "d66",
@@ -79,21 +79,30 @@ export let fracties = [
     }
 
 ]
-
 const main = async () => {
     if (localStorage.getItem("cards")) {
         state.cards = JSON.parse(localStorage.getItem("cards"));
     } else {
         state.cards = await loadPersons();
+        
+        // state.cards = state.cards.filter(card =>
+        //     fracties.some(fractie => fractie.name.toLowerCase() === card.fractie?.toLowerCase())
+        // );
+        localStorage.setItem("cards", JSON.stringify(state.cards));
 
         // state.cards = state.cards.filter(card =>
         //     fracties.some(fractie => fractie.name !== card.fractie)
         // );
-
-        localStorage.setItem("cards", JSON.stringify(state.cards));
+    }
+    if (!localStorage.getItem("totalCards")) {
+        localStorage.setItem("totalCards", state.cards.length);
     }
 
-    state.random5Cards = getRandom5Cards();
+    if (localStorage.getItem("score")) {
+        state.score = JSON.parse(localStorage.getItem("score"));
+    }
+
+    state.random5Cards = getRandom5Cards(state.cards);
 
     await loadComponent(
         "/src/components/cards/cards.html",
@@ -103,12 +112,14 @@ const main = async () => {
     await cardLoad(state.random5Cards);
 
     await loadComponent(
-        "/src/components/fracties/fracties.html", 
+        "/src/components/fracties/fracties.html",
         "#fracties-container"
     );
 
-    await fractieLoad(fracties, state.score, state.cards, state.random5Cards);
+    await fractieLoad(fracties);
 
+    document.getElementById("score").innerText = `Score: ${state.score}`;
+    document.getElementById("politici").innerText = `Politici: ${state.cards.length}/${JSON.parse(localStorage.getItem("cards")).length}`;
 
 };
 
@@ -125,9 +136,6 @@ function hambugerMenu() {
 }
 
 
-function getRandom5Cards() {
-    const random5Cards = state.cards.sort(() => 0.5 - Math.random());
-    return random5Cards.slice(0, 5);
-}
+
 
 
