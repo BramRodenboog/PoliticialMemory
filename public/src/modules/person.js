@@ -1,4 +1,6 @@
+
 import { state } from "./state.js";
+
 const loadPersons = async () => {
     const response = await fetch(
         "https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0/persoon?$filter=Verwijderd%20eq%20false%20and%20(Functie%20eq%20'Tweede%20Kamerlid')&$format=application/json;odata.metadata=full"
