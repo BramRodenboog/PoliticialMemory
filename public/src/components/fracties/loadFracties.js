@@ -39,16 +39,13 @@ async function selectFractie(fractie) {
 
             console.log("cardData.Id:", cardData.Id, typeof cardData.Id);
             console.log("random5Cards lengte:", state.random5Cards.length);
-            // localStorage.setItem("cards", JSON.stringify(state.cards));
 
             if (state.random5Cards.length === 0) {
                 console.log("5 kaarten op, reload");
                 state.random5Cards = getRandom5Cards(state.cards);
-                // localStorage.setItem("cards", JSON.stringify(state.cards));
 
                 if(state.cards.length === 0) {
                     alert("Gefeliciteerd! Je hebt alle politici geraden! De game zal nu opnieuw starten.");
-                    // localStorage.removeItem("cards");
 
                     if(state.score > JSON.parse(localStorage.getItem("highscore") || 0)) {
                         localStorage.setItem("highscore", state.score);

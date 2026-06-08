@@ -119,7 +119,7 @@ const main = async () => {
 
 document.addEventListener("DOMContentLoaded", main);
 
-function hambugerMenu() {
+function hamburgerMenu() {
     var x = document.getElementById("mynavbar");
 
     if (x.className === "navbar") {
