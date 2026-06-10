@@ -1,11 +1,12 @@
 
 export const state = {
     selectedCard: null,
-    score: 1000000,
+    score: 0,
+    streak: 0,
+    mistakes: 0,
     cards: [],
     random5Cards: [],
     startTime: null,
-    startScore: 1000000
 };
 
 

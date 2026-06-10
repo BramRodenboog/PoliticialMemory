@@ -21,12 +21,9 @@ async function selectFractie(fractie) {
         let fractieOfPerson = await getFractiesOfPerson(cardData["ActiviteitActor@odata.navigationLink"]);
         fractieOfPerson = fractieOfPerson.toLowerCase();
 
-        state.score = Math.round(state.startScore * 0.99 ** ((Date.now() - state.startTime) / 1000));
-        console.log("Score:", state.score);
-        document.getElementById("score").innerText = `Score: ${state.score}`;
-
         if (fractieOfPerson == fractie.name) {
-            // state.score++;
+            state.streak++;
+            state.score += 100 * state.streak;
             
             selectedCard.remove();
             state.cards = state.cards.filter(
@@ -59,6 +56,10 @@ async function selectFractie(fractie) {
             state.selectedCard = null;
             alert(`Correct!`);
         } else {
+            state.mistakes++;
+            state.streak = 0;
+            state.score = Math.max(0, state.score - 10);
+
             document.querySelectorAll(".card").forEach(c => {
                 c.classList.remove("selected");
                 c.classList.remove("flip");
@@ -68,6 +69,9 @@ async function selectFractie(fractie) {
 
             alert(`Fout! De fractie is ${fractieOfPerson}.`);
         }
+
+        console.log("Score:", state.score);
+        document.getElementById("score").innerText = `Score: ${state.score}`;
     }
 }
 
