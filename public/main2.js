@@ -129,6 +129,8 @@ function hamburgerMenu() {
     }
 }
 
+document.querySelector("#hamburger").addEventListener("click", hamburgerMenu);
+
 
 
 
