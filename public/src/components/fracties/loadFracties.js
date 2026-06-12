@@ -59,16 +59,15 @@ async function selectFractie(fractie) {
             state.mistakes++;
             state.streak = 0;
             state.score = Math.max(0, state.score - 10);
-
-            document.querySelectorAll(".card").forEach(c => {
-                c.classList.remove("selected");
-                c.classList.remove("flip");
-            });
-
             state.selectedCard = null;
 
             alert(`Fout! De fractie is ${fractieOfPerson}.`);
         }
+
+        document.querySelectorAll(".card").forEach(c => {
+            c.classList.remove("selected");
+            c.classList.remove("flip");
+        });
 
         console.log("Score:", state.score);
         document.getElementById("score").innerText = `Score: ${state.score}`;
@@ -78,19 +77,35 @@ async function selectFractie(fractie) {
 export async function load(fracties) {
     const fractieContainer = document.getElementById("fractie-container");
     fracties.forEach(fractie => {
-        const div = document.createElement("div");
-        div.className = "card";
-        div.id = fractie.name;
+        // Card element
+        const cardElement = document.createElement("div");
+        cardElement.className = "card";
+        cardElement.id = fractie.name;
+        cardElement.addEventListener("click", () => {
+            if (!state.selectedCard) {
+                return;
+            }
 
-        div.addEventListener("click", () => selectFractie(fractie));
+            cardElement.classList.add("flip");
+            setTimeout(() => selectFractie(fractie), 100);
+        });
 
-        div.innerHTML = `
-            <img width="100px" src="${fractie.image}" alt="Geen afbeelding beschikbaar">
-            <p class="card-name">${fractie.name.toUpperCase()}</p>
-        `;
+        const cardInner = document.createElement("div");
+        cardInner.className = "card-inner";
 
-        fractieContainer.appendChild(div);
+        // Front card side
+        const flippedCard = document.createElement("div");
+        flippedCard.className = "back-face";
 
+        // Flipped card side
+        const personCard = document.createElement("div");
+        personCard.className = "front-face";
+        personCard.innerHTML = `<img width="100px" src="${fractie.image}"><p class="card-name">${fractie.name.toUpperCase()}</p>`;
+        
+        cardInner.appendChild(personCard);
+        cardInner.appendChild(flippedCard);
+        cardElement.appendChild(cardInner);
+        fractieContainer.appendChild(cardElement);
     });
 }
 
