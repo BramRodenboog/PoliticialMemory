@@ -4,6 +4,10 @@ body {
 
 }
 
+* {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 
 .navbar {
 	overflow: hidden;
