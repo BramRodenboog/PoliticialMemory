@@ -61,7 +61,7 @@ async function selectFractie(fractie) {
             state.score = Math.max(0, state.score - 10);
             state.selectedCard = null;
 
-            alert(`Fout! De fractie is ${fractieOfPerson}.`);
+            // alert(`Fout! De fractie is ${fractieOfPerson}.`);
         }
 
         document.querySelectorAll(".card").forEach(c => {
@@ -79,7 +79,7 @@ export async function load(fracties) {
     fracties.forEach(fractie => {
         // Card element
         const cardElement = document.createElement("div");
-        cardElement.className = "card";
+        cardElement.className = "card fractie-card";
         cardElement.id = fractie.name;
         cardElement.addEventListener("click", () => {
             if (!state.selectedCard) {
@@ -87,7 +87,7 @@ export async function load(fracties) {
             }
 
             cardElement.classList.add("flip");
-            setTimeout(() => selectFractie(fractie), 100);
+            setTimeout(() => selectFractie(fractie), 200);
         });
 
         const cardInner = document.createElement("div");

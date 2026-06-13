@@ -84,19 +84,6 @@ body {
 		flex-wrap: wrap;
 		justify-content: center;
 	}
-
-	.card-container {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
-	}
-
-	.playable-politicus-cards-container {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
-		perspective: 1000px;
-	}
 }
 
 .stats-bar {
@@ -113,22 +100,39 @@ body {
 }
 
 .card-container {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
 	gap: 1rem;
 }
 
 .playable-politicus-cards-container {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
 	gap: 1rem;
 	perspective: 1000px;
 }
 
+.cards-section {
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+}
+
+.fracties-section {
+	padding: 10px;
+	padding-top: 0;
+	margin: 10px;
+	text-align: center;
+}
+
 .card {
-	width: 12vh;
-	height: 22vh;
-	margin: 0.5rem;
+	width: clamp(4.75rem, 26vw, 12vh);
+	height: clamp(8.5rem, 44vw, 22vh);
+	margin: 0;
 	position: relative;
 	perspective: 1000px;
 	box-sizing: border-box;
@@ -194,12 +198,24 @@ body {
 	background-repeat: no-repeat;
 }
 
+.fractie-card .back-face {
+	background-image: url('/assets/fractie-card-background.jpeg');
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
 .front-face img {
 	width: 100%;
 	height: 78%;
 	object-fit: cover;
 	border-radius: 5px;
 	display: block;
+}
+
+.fractie-card .front-face img {
+	object-fit: contain;
+	padding: 0.15rem;
 }
 
 .card-name {
