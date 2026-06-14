@@ -87,14 +87,7 @@ const main = async () => {
     } else {
         state.cards = await loadPersons();
         
-        // state.cards = state.cards.filter(card =>
-        //     fracties.some(fractie => fractie.name.toLowerCase() === card.fractie?.toLowerCase())
-        // );
         localStorage.setItem("cards", JSON.stringify(state.cards));
-
-        // state.cards = state.cards.filter(card =>
-        //     fracties.some(fractie => fractie.name !== card.fractie)
-        // );
     }
 
     state.random5Cards = getRandom5Cards(state.cards);
@@ -110,6 +103,13 @@ const main = async () => {
         "/src/components/fracties/fracties.html",
         "#fracties-container"
     );
+
+    // Shuffle the fracties (Using Fisher-Yates algorithm)
+    for (let i = fracties.length - 1; i > 0; i--) {
+        // j is a random index from 0 to i
+        const j = Math.floor(Math.random() * (i + 1));
+        [fracties[i], fracties[j]] = [fracties[j], fracties[i]];
+    }
 
     await fractieLoad(fracties);
 
