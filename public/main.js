@@ -1,4 +1,4 @@
-
+import "./src/modules/fetch.js";
 import { loadComponent } from "../src/framework.js";
 import { loadPersons, getFractiesOfPerson } from '../src/modules/person.js';
 import { load as cardLoad } from '../src/components/cards/LoadCard.js';
@@ -6,6 +6,7 @@ import { load as fractieLoad } from '../src/components/fracties/loadFracties.js'
 import { state } from "../src/modules/state.js";
 import { getRandom5Cards } from "../src/modules/person.js";
 import { loadNavbar } from '../src/components/navbar/navbar.js';
+import { shuffleArray } from "./src/modules/utils.js";
 
 export let fracties = [
     {
@@ -107,12 +108,14 @@ const main = async () => {
         "#navbar-container"
     );
     await loadNavbar();
+
     if (!document.getElementById("cards-container")) {
         return
     }
     if (!document.getElementById("fracties-container")) {
         return
     }
+
     if (localStorage.getItem("cards")) {
         state.cards = JSON.parse(localStorage.getItem("cards"));
     } else {
@@ -136,15 +139,7 @@ const main = async () => {
         "#fracties-container"
     );
 
-
-    // Shuffle the fracties (Using Fisher-Yates algorithm)
-    for (let i = fracties.length - 1; i > 0; i--) {
-        // j is a random index from 0 to i
-        const j = Math.floor(Math.random() * (i + 1));
-        [fracties[i], fracties[j]] = [fracties[j], fracties[i]];
-    }
-
-    await fractieLoad(fracties);
+    await fractieLoad(shuffleArray(fracties));
 
     document.getElementById("score").innerText = `Score: ${state.score}`;
     document.getElementById("politici").innerText = `Politici: ${state.cards.length}/${state.cards.length}`;
