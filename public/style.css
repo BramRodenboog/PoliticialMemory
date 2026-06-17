@@ -1,7 +1,6 @@
 html,
 body {
 	margin: 0;
-
 }
 
 * {
@@ -234,3 +233,85 @@ body {
 /* .selected {
 	border: 11px solid #4adf83;
 } */
+
+
+/* Login Page Styles */
+.login-container {
+	padding: 1rem;
+	width: clamp(300px, 80%, 400px);
+	max-width: 400px;
+	margin: 12vh auto;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.login-container h2 {
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.form-group {
+	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.form-group label {
+	margin-bottom: 0.5rem;
+	font-weight: bold;
+}
+
+.form-group input {
+	padding: 0.5rem;
+	font-size: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+form button {
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	background-color: #154273;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+/* Leaderboard Page Styles */
+.leaderboard-container {
+	padding: 1rem;
+	width: clamp(300px, 80%, 600px);
+	max-width: 600px;
+	margin: 12vh auto;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.leaderboard-container h2 {
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.leaderboard-container table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #ccc;
+	background-color: #f9f9f9;
+}
+
+.leaderboard-container th, .leaderboard-container td {
+	padding: 0.5rem;
+	text-align: left;
+	border-bottom: 1px solid #ccc;
+}
+
+/* Profile Page Styles */
+.profile-container {
+	padding: 1rem;
+	width: clamp(300px, 80%, 600px);
+	max-width: 600px;
+	margin: 12vh auto;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}

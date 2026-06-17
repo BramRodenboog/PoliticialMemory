@@ -100,7 +100,7 @@ export async function load(fracties) {
         // Flipped card side
         const personCard = document.createElement("div");
         personCard.className = "front-face";
-        personCard.innerHTML = `<img width="100px" src="${fractie.image}"><p class="card-name">${fractie.name.toUpperCase()}</p>`;
+        personCard.innerHTML = `<img width="100px" alt="${fractie.alt}" src="${fractie.image}"><p class="card-name">${fractie.name.toUpperCase()}</p>`;
         
         cardInner.appendChild(personCard);
         cardInner.appendChild(flippedCard);
