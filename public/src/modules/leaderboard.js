@@ -1,9 +1,6 @@
-import { LeaderBoard } from "./api.js";
+import { getLeaderboard } from "./api.js";
 
-
-
-
-const leaderboard = await LeaderBoard();
+const leaderboard = await getLeaderboard();
 
 leaderboard.sort((a, b) => b.score - a.score);
 
@@ -12,7 +9,6 @@ const tbody = document.getElementById("leaderboard-body");
 tbody.innerHTML = "";
 
 leaderboard.forEach((player, index) => {
-
     const row = document.createElement("tr");
 
     row.innerHTML = `

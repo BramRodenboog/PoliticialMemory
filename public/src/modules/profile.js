@@ -1,9 +1,13 @@
 import { getProfile, getGames } from "./api.js";
 import { state } from "./state.js";
+import { isAuthenticated } from "./auth.js";
 
+if (!isAuthenticated()) {
+    window.location.href = "/";
+}
 
 const profile = await getProfile();
-const games = await getGames();
+const games = profile.games || [];
 
 document.getElementById("username-display")
     .innerText = profile.name;
@@ -20,7 +24,7 @@ if (games.length > 0) {
         .innerText = bestScore
     
 } else {
-    document.getElementById("score-display" )
+    document.getElementById("score-display")
         .innerText = "Nog geen spellen gespeeld"
 }
 

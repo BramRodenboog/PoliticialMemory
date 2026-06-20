@@ -21,11 +21,19 @@
         <h1>Profiel</h1>
         <p>Gebruikersnaam: <span id="username-display"></span></p>
         <p>Email: <span id="email-display"></span></p>
-        <p>Max score: <span id="score-display"></span></p>
+        <p>Beste score: <span id="score-display"></span></p>
 
         <h4>Kies een achtergrond:</h4>
 
         <select id="animal-select">
+
+            <option value="" default disabled>
+                Kies een optie
+            </option>
+
+            <option disabled>
+                ----------------------------------
+            </option>
 
             <option value="">
                 Geen dier | Witte achtergrond
@@ -59,13 +67,13 @@
 
             </optgroup>
 
-            </select>
+        </select>
 
-            <br><br>
-            
-            <button id="save-background">
-                Opslaan
-            </button>
+        <br><br>
+        
+        <button id="save-background">
+            Opslaan
+        </button>
     </div>
 </body>
 </html>

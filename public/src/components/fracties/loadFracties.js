@@ -5,6 +5,7 @@ import { state } from "../../modules/state.js";
 import { getRandom5Cards } from "../../modules/person.js";
 import { load as cardLoad } from '../cards/LoadCard.js';
 import { submitScore } from "../../modules/api.js";
+
 async function selectFractie(fractie) {
     let selectedCard = document.querySelector(".selected");
 
@@ -38,10 +39,9 @@ async function selectFractie(fractie) {
 
             if (state.random5Cards.length === 0) {
                 console.log("5 kaarten op, reload");
-                state.random5Cards = getRandom5Cards(state.cards);
 
                 if(state.cards.length === 0) {
-                    alert("Gefeliciteerd! Je hebt alle politici geraden! De game zal nu opnieuw starten.");
+                    alert("Gefeliciteerd! Je hebt alle politici geraden! De game zal over 15 seconden opnieuw starten.");
 
                     if(state.guesses < JSON.parse(localStorage.getItem("highscore") || 0)) {
                         localStorage.setItem("highscore", state.guesses);
@@ -53,9 +53,15 @@ async function selectFractie(fractie) {
                     } catch(error) {
                         console.error("Score opslaan mislukt:", error);
                     }
-                }
 
-                await cardLoad(state.random5Cards);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 15000);
+                } else {
+                    state.random5Cards = getRandom5Cards(state.cards);
+
+                    await cardLoad(state.random5Cards);
+                }
             }
 
             state.selectedCard = null;

@@ -13,8 +13,7 @@ export async function login(username, password) {
 }
 
 
-export async function LeaderBoard() {
-
+export async function getLeaderboard() {
     const response = await fetch(`${API_ENDPOINT}/memory/top-scores`, {
         method: "GET",
         headers: {
@@ -26,7 +25,6 @@ export async function LeaderBoard() {
 }
 
 export async function getProfile() {
-
     const response = await fetch(
         `${API_ENDPOINT}/player/`,
         {
@@ -40,8 +38,6 @@ export async function getProfile() {
 }
 
 export async function getGames() {
-
-
     const response = await fetch(
         `${API_ENDPOINT}/player/games`,
         {
@@ -54,7 +50,6 @@ export async function getGames() {
     return response.json();
 }
 
-// moet nog naar gekeken worden
 export async function submitScore(score) {
     const response = await fetch(`${API_ENDPOINT}/game/save`, {
         method: "POST",

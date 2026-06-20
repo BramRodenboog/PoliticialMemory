@@ -240,9 +240,6 @@ body {
 	text-align: center;
 	line-height: 1.1;
 }
-/* .selected {
-	border: 11px solid #4adf83;
-} */
 
 
 /* Login Page Styles */
@@ -315,6 +312,7 @@ select {
 	margin: 12vh auto;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+	background-color: #f9f9f9;
 }
 
 .leaderboard-container h2 {
@@ -326,7 +324,7 @@ select {
 	width: 100%;
 	border-collapse: collapse;
 	border: 1px solid #ccc;
-	background-color: #f9f9f9;
+	background-color: white;
 }
 
 .leaderboard-container th, .leaderboard-container td {
@@ -343,4 +341,5 @@ select {
 	margin: 12vh auto;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+	background-color: #f9f9f9;
 }
