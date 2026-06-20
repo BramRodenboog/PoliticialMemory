@@ -21,10 +21,9 @@ async function selectFractie(fractie) {
         let fractieOfPerson = await getFractiesOfPerson(cardData["ActiviteitActor@odata.navigationLink"]);
         fractieOfPerson = fractieOfPerson.toLowerCase();
 
+        state.guesses++;
+
         if (fractieOfPerson == fractie.name) {
-            state.streak++;
-            state.score += 100 * state.streak;
-            
             selectedCard.remove();
             state.cards = state.cards.filter(
                 card => card.Id !== selectedCard.id
@@ -44,12 +43,12 @@ async function selectFractie(fractie) {
                 if(state.cards.length === 0) {
                     alert("Gefeliciteerd! Je hebt alle politici geraden! De game zal nu opnieuw starten.");
 
-                    if(state.score > JSON.parse(localStorage.getItem("highscore") || 0)) {
-                        localStorage.setItem("highscore", state.score);
-                        alert(`Nieuwe highscore: ${state.score}`);
+                    if(state.guesses < JSON.parse(localStorage.getItem("highscore") || 0)) {
+                        localStorage.setItem("highscore", state.guesses);
+                        alert(`Nieuwe highscore: ${state.guesses}`);
                     }
                     try {
-                        const result = await submitScore(state.score);
+                        const result = await submitScore(state.guesses);
                         console.log("Score opgeslagen:", result);
                     } catch(error) {
                         console.error("Score opslaan mislukt:", error);
@@ -62,9 +61,6 @@ async function selectFractie(fractie) {
             state.selectedCard = null;
             alert(`Correct!`);
         } else {
-            state.mistakes++;
-            state.streak = 0;
-            state.score = Math.max(0, state.score - 10);
             state.selectedCard = null;
 
             // alert(`Fout! De fractie is ${fractieOfPerson}.`);
@@ -75,8 +71,8 @@ async function selectFractie(fractie) {
             c.classList.remove("flip");
         });
 
-        console.log("Score:", state.score);
-        document.getElementById("score").innerText = `Score: ${state.score}`;
+        console.log("Guesses:", state.guesses);
+        document.getElementById("score").innerText = `Guesses: ${state.guesses}`;
     }
 }
 
