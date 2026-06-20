@@ -72,7 +72,7 @@ async function selectFractie(fractie) {
         });
 
         console.log("Guesses:", state.guesses);
-        document.getElementById("score").innerText = `Guesses: ${state.guesses}`;
+        document.getElementById("score").innerText = `Pogingen: ${state.guesses}`;
     }
 }
 
