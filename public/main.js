@@ -141,7 +141,7 @@ const main = async () => {
 
     await fractieLoad(shuffleArray(fracties));
 
-    document.getElementById("score").innerText = `Guesses: ${state.guesses}`;
+    document.getElementById("score").innerText = `Pogingen: ${state.guesses}`;
     document.getElementById("politici").innerText = `Politici: ${state.cards.length}/${state.cards.length}`;
     
     
