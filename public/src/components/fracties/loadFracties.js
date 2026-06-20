@@ -4,7 +4,7 @@ import { getFractiesOfPerson } from "../../modules/person.js";
 import { state } from "../../modules/state.js";
 import { getRandom5Cards } from "../../modules/person.js";
 import { load as cardLoad } from '../cards/LoadCard.js';
-
+import { submitScore } from "../../modules/api.js";
 async function selectFractie(fractie) {
     let selectedCard = document.querySelector(".selected");
 
@@ -47,6 +47,12 @@ async function selectFractie(fractie) {
                     if(state.score > JSON.parse(localStorage.getItem("highscore") || 0)) {
                         localStorage.setItem("highscore", state.score);
                         alert(`Nieuwe highscore: ${state.score}`);
+                    }
+                    try {
+                        const result = await submitScore(state.score);
+                        console.log("Score opgeslagen:", result);
+                    } catch(error) {
+                        console.error("Score opslaan mislukt:", error);
                     }
                 }
 

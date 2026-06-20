@@ -11,3 +11,60 @@ export async function login(username, password) {
 
     return response.json();
 }
+
+
+export async function LeaderBoard() {
+
+    const response = await fetch(`${API_ENDPOINT}/memory/top-scores`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    
+    return response.json();
+}
+
+export async function getProfile() {
+
+    const response = await fetch(
+        `${API_ENDPOINT}/player/`,
+        {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    );
+
+    return response.json();
+}
+
+export async function getGames() {
+
+
+    const response = await fetch(
+        `${API_ENDPOINT}/player/games`,
+        {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    );
+
+    return response.json();
+}
+
+// moet nog naar gekeken worden
+export async function submitScore(score) {
+    const response = await fetch(`${API_ENDPOINT}/game/save`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            score: score
+        })
+    });
+
+    return response.json();
+}
