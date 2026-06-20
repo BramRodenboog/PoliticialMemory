@@ -21,7 +21,7 @@ if (games.length > 0) {
     
 } else {
     document.getElementById("score-display" )
-        .innerText = "Nog geen games gespeeld"
+        .innerText = "Nog geen spellen gespeeld"
 }
 
 const select = document.getElementById("animal-select");
@@ -30,9 +30,12 @@ const button = document.getElementById("save-background");
 
 button.addEventListener("click",()=>{
     const image = select.value;
-    if(!image) return;
 
     state.imageAPI = image;
+
+    if(!image) {
+        localStorage.removeItem("profileBackground");
+    }
 
     document.documentElement.style.setProperty(
         "--background-image",
