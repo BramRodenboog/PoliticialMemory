@@ -5,6 +5,7 @@ export const state = {
     cards: [],
     random5Cards: [],
     startTime: null,
+    imageAPI: null
 };
 
 

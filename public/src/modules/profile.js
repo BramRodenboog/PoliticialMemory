@@ -1,11 +1,5 @@
-function main() {
-    totalScore = localStorage.getItem("score") || 0;
-    gamesPlayed = localStorage.getItem("gamesPlayed") || 0;
-}
-
-
 import { getProfile, getGames } from "./api.js";
-
+import { state } from "./state.js";
 
 
 const profile = await getProfile();
@@ -29,3 +23,24 @@ if (games.length > 0) {
     document.getElementById("score-display" )
         .innerText = "Nog geen games gespeeld"
 }
+
+const select = document.getElementById("animal-select");
+const button = document.getElementById("save-background");
+
+
+button.addEventListener("click",()=>{
+    const image = select.value;
+    if(!image) return;
+
+    state.imageAPI = image;
+
+    document.documentElement.style.setProperty(
+        "--background-image",
+        `url("${image}")`
+    );
+
+    localStorage.setItem(
+        "profileBackground",
+        image
+    );
+});

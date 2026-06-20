@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,11 @@
 
     <script type="module" src="main.js" defer></script>
     <script type="module" src="src/modules/profile.js" defer></script>
+    <script type="module" src="src/modules/background.js" defer></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div id="navbar-container"></div>
@@ -20,6 +23,47 @@
         <p>Email: <span id="email-display"></span></p>
         <p>Max score: <span id="score-display"></span></p>
 
+        <select id="animal-select">
+
+            <option value="">
+                Kies dier
+            </option>
+
+            <optgroup label="Katten">
+
+                <option value="https://cataas.com/cat">
+                    Kat
+                </option>
+
+                <option value="https://cataas.com/cat/orange">
+                    Oranje kat
+                </option>
+
+                <option value="https://cataas.com/cat/black">
+                    Zwarte kat
+                </option>
+
+            </optgroup>
+
+            <optgroup label="Honden">
+
+                <option value="https://images.dog.ceo/breeds/beagle/n02088364_11136.jpg">
+                    Beagle
+                </option>
+
+                <option value="https://images.dog.ceo/breeds/husky/n02110185_1469.jpg">
+                    Husky
+                </option>
+
+            </optgroup>
+
+            </select>
+
+            <br><br>
+            
+            <button id="save-background">
+                Opslaan
+            </button>
     </div>
 </body>
 </html>
