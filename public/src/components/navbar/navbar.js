@@ -14,6 +14,7 @@ export function loadNavbar() {
     document.querySelector("#hamburger").addEventListener("click", hamburgerMenu);
 
     const loginLink = document.getElementById("login-link");
+    const registerLink = document.getElementById("register-link");
     const logoutLink = document.getElementById("logout-link");
     const profileLink = document.getElementById("profile-link");
     const adminLink = document.getElementById("admin-link");
@@ -21,6 +22,7 @@ export function loadNavbar() {
     const isLoggedIn = isAuthenticated();
 
     loginLink.hidden = isLoggedIn;
+    registerLink.hidden = isLoggedIn;
     logoutLink.hidden = !isLoggedIn;
     profileLink.hidden = !isLoggedIn;
     adminLink.hidden = !isAdmin();
