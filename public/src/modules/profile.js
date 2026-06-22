@@ -1,4 +1,4 @@
-import { getProfile, getGames } from "./api.js";
+import { getProfile, getGames, changeEmail } from "./api.js";
 import { state } from "./state.js";
 import { isAuthenticated } from "./auth.js";
 import { savePreferences, loadPreferences } from "./preferences.js";
@@ -40,4 +40,34 @@ button.addEventListener("click",()=>{
 
     savePreferences(image, colorFound, colorClosed);
     loadPreferences();
+});
+
+
+const editEmailButton = document.getElementById("edit-email");
+const editEmailModal = document.getElementById("edit-email-modal");
+const closeModalButton = editEmailModal.querySelector(".close");
+const editEmailForm = document.getElementById("edit-email-form");
+const newEmailInput = document.getElementById("new-email")
+
+editEmailButton.addEventListener("click", () => {
+    newEmailInput.value = profile.email;
+    editEmailModal.showModal();
+});
+
+closeModalButton.addEventListener("click", () => {
+    editEmailModal.close();
+});
+
+editEmailForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const newEmail = newEmailInput.value;
+    
+    try {
+        await changeEmail(newEmail);
+        document.getElementById("email-display").innerText = newEmail;
+    } catch (error) {
+        console.error("Fout bij het wijzigen van het e-mailadres:", error);
+    }
+    
+    editEmailModal.close();
 });

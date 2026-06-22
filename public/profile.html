@@ -20,7 +20,7 @@
     <div class="profile-container">
         <h1>Profiel</h1>
         <p>Gebruikersnaam: <span id="username-display"></span></p>
-        <p>Email: <span id="email-display"></span></p>
+        <p>Email: <span id="email-display"></span> <button id="edit-email">Wijzigen</button></p>
         <p>Beste score: <span id="score-display"></span></p>
 
         <div>
@@ -116,5 +116,19 @@
         </div>
         
     </div>
+    <dialog id="edit-email-modal">
+        <div class="modal-content">
+            <button class="close">&times;</button>
+            <h2>Email wijzigen</h2>
+            <form id="edit-email-form">
+                <div class="form-group">
+                    <label for="new-email">Email:</label>
+                    <input type="email" id="new-email" name="new-email" required>
+                </div>
+                
+                <button type="submit">Opslaan</button>
+            </form>
+        </div>
+    </dialog>
 </body>
 </html>

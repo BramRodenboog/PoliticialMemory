@@ -101,3 +101,17 @@ export async function getPreferences() {
 
     return response.json();
 }
+
+export async function changeEmail(newEmail) {
+    const response = await fetch(`${API_ENDPOINT}/player/email`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: newEmail
+        })
+    });
+
+    return response;
+}
