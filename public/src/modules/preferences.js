@@ -10,8 +10,6 @@ export async function loadPreferences() {
     try {
         const response = await getPreferences();
 
-        console.log("Voorkeuren opgehaald:", response);
-
         state.imageAPI = response.preferred_api;
         document.documentElement.style.setProperty(
             "--background-image",
