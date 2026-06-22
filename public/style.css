@@ -1,3 +1,9 @@
+
+:root {
+	--color-person: url("/assets/blue-card-background.jpeg");
+	--color-fractie: url("/assets/red-card-background.jpeg");
+}
+
 html,
 body {
 	margin: 0;
@@ -206,14 +212,14 @@ body {
 }
 
 .back-face {
-	background-image: url('/assets/card-background.jpeg');
+	background-image: var(--color-person);
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
 }
 
 .fractie-card .back-face {
-	background-image: url('/assets/fractie-card-background.jpeg');
+	background-image: var(--color-fractie);
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -342,4 +348,8 @@ select {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	background-color: #f9f9f9;
+}
+
+#save-background {
+	margin-top: 1rem;
 }

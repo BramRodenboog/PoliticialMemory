@@ -23,57 +23,98 @@
         <p>Email: <span id="email-display"></span></p>
         <p>Beste score: <span id="score-display"></span></p>
 
-        <h4>Kies een achtergrond:</h4>
+        <div>
+            <h2>Voorkeuren</h2>
 
-        <select id="animal-select">
+            <div>
+                <h4>Kies een achtergrond:</h4>
 
-            <option value="" default disabled>
-                Kies een optie
-            </option>
+                <select id="animal-select">
+                    <option value="" selected disabled>
+                        Kies een optie
+                    </option>
+                    <option disabled>
+                        ----------------------------------
+                    </option>
 
-            <option disabled>
-                ----------------------------------
-            </option>
+                    <option value="">
+                        Geen dier | Witte achtergrond
+                    </option>
 
-            <option value="">
-                Geen dier | Witte achtergrond
-            </option>
+                    <optgroup label="Katten">
+                        <option value="https://cataas.com/cat">
+                            Kat
+                        </option>
 
-            <optgroup label="Katten">
+                        <option value="https://cataas.com/cat/orange">
+                            Oranje kat
+                        </option>
 
-                <option value="https://cataas.com/cat">
-                    Kat
-                </option>
+                        <option value="https://cataas.com/cat/black">
+                            Zwarte kat
+                        </option>
+                    </optgroup>
 
-                <option value="https://cataas.com/cat/orange">
-                    Oranje kat
-                </option>
+                    <optgroup label="Honden">
+                        <option value="https://images.dog.ceo/breeds/beagle/n02088364_11136.jpg">
+                            Beagle
+                        </option>
 
-                <option value="https://cataas.com/cat/black">
-                    Zwarte kat
-                </option>
+                        <option value="https://images.dog.ceo/breeds/husky/n02110185_1469.jpg">
+                            Husky
+                        </option>
+                    </optgroup>
+                </select>
+                
+            </div>
 
-            </optgroup>
+            <div>
+                <h4>Kies een kleur voor de fracties:</h4>
 
-            <optgroup label="Honden">
+                <select id="color-found-select">
+                    <option value="" selected disabled>
+                        Kies een optie
+                    </option>
+                    <option disabled>
+                        ----------------------------------
+                    </option>
 
-                <option value="https://images.dog.ceo/breeds/beagle/n02088364_11136.jpg">
-                    Beagle
-                </option>
+                    <option value="url('/assets/red-card-background.jpeg')">
+                        Rode speelkaart
+                    </option>
 
-                <option value="https://images.dog.ceo/breeds/husky/n02110185_1469.jpg">
-                    Husky
-                </option>
+                    <option value="url('/assets/blue-card-background.jpeg')">
+                        Blauwe speelkaart
+                    </option>
+                </select>
+            </div>
 
-            </optgroup>
+            <div>
+                <h4>Kies een kleur voor de personages:</h4>
 
-        </select>
+                <select id="color-closed-select">
+                    <option value="" selected disabled>
+                        Kies een optie
+                    </option>
+                    <option disabled>
+                        ----------------------------------
+                    </option>
 
-        <br><br>
+                    <option value="url('/assets/red-card-background.jpeg')">
+                        Rode speelkaart
+                    </option>
+
+                    <option value="url('/assets/blue-card-background.jpeg')">
+                        Blauwe speelkaart
+                    </option>
+                </select>
+            </div>
+
+            <button id="save-background">
+                Opslaan
+            </button>
+        </div>
         
-        <button id="save-background">
-            Opslaan
-        </button>
     </div>
 </body>
 </html>

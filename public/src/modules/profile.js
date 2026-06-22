@@ -1,6 +1,7 @@
 import { getProfile, getGames } from "./api.js";
 import { state } from "./state.js";
 import { isAuthenticated } from "./auth.js";
+import { savePreferences, loadPreferences } from "./preferences.js";
 
 if (!isAuthenticated()) {
     window.location.href = "/";
@@ -11,8 +12,6 @@ const games = profile.games || [];
 
 document.getElementById("username-display")
     .innerText = profile.name;
-
-
 document.getElementById("email-display")
     .innerText = profile.email;
 
@@ -28,26 +27,17 @@ if (games.length > 0) {
         .innerText = "Nog geen spellen gespeeld"
 }
 
-const select = document.getElementById("animal-select");
+const animalSelect = document.getElementById("animal-select");
+const fractieColorSelect = document.getElementById("color-found-select");
+const personColorSelect = document.getElementById("color-closed-select");
 const button = document.getElementById("save-background");
 
 
 button.addEventListener("click",()=>{
-    const image = select.value;
+    const image = animalSelect.value;
+    const colorFound = fractieColorSelect.value;
+    const colorClosed = personColorSelect.value;
 
-    state.imageAPI = image;
-
-    if(!image) {
-        localStorage.removeItem("profileBackground");
-    }
-
-    document.documentElement.style.setProperty(
-        "--background-image",
-        `url("${image}")`
-    );
-
-    localStorage.setItem(
-        "profileBackground",
-        image
-    );
+    savePreferences(image, colorFound, colorClosed);
+    loadPreferences();
 });

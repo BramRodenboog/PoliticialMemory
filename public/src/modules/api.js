@@ -74,3 +74,30 @@ export async function submitScore(score) {
 
     return response.json();
 }
+
+export async function setPreferences(api, color_found, color_closed) {
+    const response = await fetch(`${API_ENDPOINT}/player/preferences`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            api: api,
+            color_found: color_found,
+            color_closed: color_closed
+        })
+    });
+
+    return response;
+}
+
+export async function getPreferences() {
+    const response = await fetch(`${API_ENDPOINT}/player/preferences`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    return response.json();
+}

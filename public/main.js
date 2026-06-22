@@ -7,6 +7,8 @@ import { state } from "../src/modules/state.js";
 import { getRandom5Cards } from "../src/modules/person.js";
 import { loadNavbar } from '../src/components/navbar/navbar.js';
 import { shuffleArray } from "./src/modules/utils.js";
+import { loadPreferences } from "./src/modules/preferences.js";
+import { isAuthenticated } from "./src/modules/auth.js";
 
 export let fracties = [
     {
@@ -114,6 +116,10 @@ const main = async () => {
     }
     if (!document.getElementById("fracties-container")) {
         return
+    }
+
+    if (isAuthenticated()) {
+        await loadPreferences();
     }
 
     if (localStorage.getItem("cards")) {
