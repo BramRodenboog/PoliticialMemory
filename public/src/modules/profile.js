@@ -2,29 +2,28 @@ import { getProfile, getGames, changeEmail } from "./api.js";
 import { state } from "./state.js";
 import { isAuthenticated } from "./auth.js";
 import { savePreferences, loadPreferences } from "./preferences.js";
+import { showEmailModal, initEmailModal } from "./emailModal.js";
 
 if (!isAuthenticated()) {
     window.location.href = "/";
 }
 
+initEmailModal();
+
 const profile = await getProfile();
 const games = profile.games || [];
 
-document.getElementById("username-display")
-    .innerText = profile.name;
-document.getElementById("email-display")
-    .innerText = profile.email;
+document.getElementById("username-display").innerText = profile.name;
+document.getElementById("email-display").innerText = profile.email;
 
 
 if (games.length > 0) {
     const bestScore = Math.min(...games.map(game => game.score))
 
-    document.getElementById("score-display")
-        .innerText = bestScore
+    document.getElementById("score-display").innerText = bestScore
     
 } else {
-    document.getElementById("score-display")
-        .innerText = "Nog geen spellen gespeeld"
+    document.getElementById("score-display").innerText = "Nog geen spellen gespeeld"
 }
 
 const animalSelect = document.getElementById("animal-select");
@@ -42,32 +41,8 @@ button.addEventListener("click",()=>{
     loadPreferences();
 });
 
-
 const editEmailButton = document.getElementById("edit-email");
-const editEmailModal = document.getElementById("edit-email-modal");
-const closeModalButton = editEmailModal.querySelector(".close");
-const editEmailForm = document.getElementById("edit-email-form");
-const newEmailInput = document.getElementById("new-email")
 
 editEmailButton.addEventListener("click", () => {
-    newEmailInput.value = profile.email;
-    editEmailModal.showModal();
-});
-
-closeModalButton.addEventListener("click", () => {
-    editEmailModal.close();
-});
-
-editEmailForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const newEmail = newEmailInput.value;
-    
-    try {
-        await changeEmail(newEmail);
-        document.getElementById("email-display").innerText = newEmail;
-    } catch (error) {
-        console.error("Fout bij het wijzigen van het e-mailadres:", error);
-    }
-    
-    editEmailModal.close();
+    showEmailModal(profile.email);
 });

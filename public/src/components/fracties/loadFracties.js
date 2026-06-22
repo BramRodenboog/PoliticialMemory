@@ -6,6 +6,7 @@ import { getRandom5Cards } from "../../modules/person.js";
 import { load as cardLoad } from '../cards/LoadCard.js';
 import { submitScore } from "../../modules/api.js";
 import { isAuthenticated } from "../../modules/auth.js";
+import { showEndingModal } from "../../modules/endingModal.js";
 
 async function selectFractie(fractie) {
     let selectedCard = document.querySelector(".selected");
@@ -42,8 +43,8 @@ async function selectFractie(fractie) {
                 console.log("5 kaarten op, reload");
 
                 if(state.cards.length === 0) {
-                    alert("Gefeliciteerd! Je hebt alle politici geraden! De game zal over 15 seconden opnieuw starten.");
-
+                    showEndingModal(state.guesses);
+                    
                     if(state.guesses < JSON.parse(localStorage.getItem("highscore") || 0)) {
                         localStorage.setItem("highscore", state.guesses);
                         alert(`Nieuwe highscore: ${state.guesses}`);
@@ -58,9 +59,6 @@ async function selectFractie(fractie) {
                         }
                     }
 
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 15000);
                 } else {
                     state.random5Cards = getRandom5Cards(state.cards);
 

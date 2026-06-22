@@ -9,6 +9,9 @@ import { loadNavbar } from '../src/components/navbar/navbar.js';
 import { shuffleArray } from "./src/modules/utils.js";
 import { loadPreferences } from "./src/modules/preferences.js";
 import { isAuthenticated } from "./src/modules/auth.js";
+import { initEndingModal } from "./src/modules/endingModal.js";
+
+initEndingModal();
 
 export let fracties = [
     {
