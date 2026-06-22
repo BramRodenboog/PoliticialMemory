@@ -5,6 +5,7 @@ import { state } from "../../modules/state.js";
 import { getRandom5Cards } from "../../modules/person.js";
 import { load as cardLoad } from '../cards/LoadCard.js';
 import { submitScore } from "../../modules/api.js";
+import { isAuthenticated } from "../../modules/auth.js";
 
 async function selectFractie(fractie) {
     let selectedCard = document.querySelector(".selected");
@@ -47,11 +48,14 @@ async function selectFractie(fractie) {
                         localStorage.setItem("highscore", state.guesses);
                         alert(`Nieuwe highscore: ${state.guesses}`);
                     }
-                    try {
-                        const result = await submitScore(state.guesses);
-                        console.log("Score opgeslagen:", result);
-                    } catch(error) {
-                        console.error("Score opslaan mislukt:", error);
+
+                    if(isAuthenticated()) {
+                        try {
+                            const result = await submitScore(state.guesses);
+                            console.log("Score opgeslagen:", result);
+                        } catch(error) {
+                            console.error("Score opslaan mislukt:", error);
+                        }
                     }
 
                     setTimeout(() => {
