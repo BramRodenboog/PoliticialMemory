@@ -388,6 +388,12 @@ dialog::backdrop {
 	gap: 1rem;
 }
 
+.modal-buttons {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+
 .close {
 	float: right;
 	font-size: 1.5rem;
