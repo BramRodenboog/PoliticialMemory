@@ -392,6 +392,7 @@ dialog::backdrop {
 	display: flex;
 	justify-content: flex-end;
 	gap: 1rem;
+	padding-top: 1rem;
 }
 
 .close {

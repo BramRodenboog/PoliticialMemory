@@ -44,11 +44,6 @@ async function selectFractie(fractie) {
 
                 if(state.cards.length === 0) {
                     showEndingModal(state.guesses);
-                    
-                    if(state.guesses < JSON.parse(localStorage.getItem("highscore") || 0)) {
-                        localStorage.setItem("highscore", state.guesses);
-                        alert(`Nieuwe highscore: ${state.guesses}`);
-                    }
 
                     if(isAuthenticated()) {
                         try {

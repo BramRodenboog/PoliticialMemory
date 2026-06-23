@@ -4,7 +4,15 @@ export function showEndingModal(guesses) {
 
     if (!modal) return;
 
+    const highscoreText = document.getElementById("highscore-text");
+
+    if(guesses < JSON.parse(localStorage.getItem("highscore") || 0)) {
+        localStorage.setItem("highscore", guesses);
+
+    }
+
     document.getElementById("final-score").innerText = guesses;
+    document.getElementById("highscore").innerText = JSON.parse(localStorage.getItem("highscore"));
 
     modal.showModal();
 }
