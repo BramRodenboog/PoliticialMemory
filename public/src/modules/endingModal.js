@@ -8,7 +8,9 @@ export function showEndingModal(guesses) {
 
     if(guesses < JSON.parse(localStorage.getItem("highscore") || 0)) {
         localStorage.setItem("highscore", guesses);
-
+        highscoreText.innerText = "Nieuwe highscore!";
+    } else {
+        highscoreText.innerText = "Huidige highscore:";
     }
 
     document.getElementById("final-score").innerText = guesses;

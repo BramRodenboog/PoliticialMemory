@@ -30,3 +30,7 @@ form.addEventListener("submit", async (event) => {
         errorMessage.hidden = false;
     }
 });
+
+document.getElementById("github-login").addEventListener("click", (event) => {
+    window.location.href = "http://127.0.0.1:8000/connect/github";
+});
